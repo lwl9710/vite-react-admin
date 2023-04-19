@@ -9,7 +9,7 @@ const BasicLayout: React.FC = () => {
   const location = useLocation();
   if(location.pathname === "/") {
     return (
-      <Navigate to="/dashboard" replace></Navigate>
+      <Navigate to="/dashboard" replace />
     )
   } else {
     return (

@@ -1,6 +1,8 @@
-.test {
-  @include active;
+.title {
+  padding-bottom: 16px;
+  border-bottom: 1px dashed #EEE;
 }
-.color {
-  color: orangered;
+
+.ability {
+  padding-top: 16px;
 }
