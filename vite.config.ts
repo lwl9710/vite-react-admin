@@ -15,6 +15,7 @@ export default defineConfig({
       "@": resolvePath("src"),
       "@utils": resolvePath("src/utils"),
       "@views": resolvePath("src/views"),
+      "@assets": resolvePath("src/assets")
     }
   },
   server: {
@@ -26,6 +27,13 @@ export default defineConfig({
         changeOrigin: true,
         target: "https://www.baidu.com",
         rewrite: path => path.replace("/dev-api", "")
+      }
+    }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: "@import \"@assets/styles/mixin.scss\";"
       }
     }
   },

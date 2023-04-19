@@ -18,8 +18,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@utils": ["src/utils/*"],
-      "@views": ["src/views/*"]
+      "@utils/*": ["src/utils/*"],
+      "@views/*": ["src/views/*"],
+      "@assets/*": ["src/assets/*"]
     }
   },
   "include": ["src", "types"],
