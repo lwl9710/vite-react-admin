@@ -1,8 +1,18 @@
+import { Button, message } from "antd";
 import style from "./index.module.scss";
 
 const DashboardView: React.FC = () => {
+  const [messageApi, contextHolder] = message.useMessage();
+  const handleClick = () => {
+    messageApi.success("Antd引入成功...");
+  }
   return (
-    <h1 className={style.test}>Welcome to Dashboard.</h1>
+    <>
+      {contextHolder}
+      <Button type="primary" onClick={handleClick}>ClickMe</Button>
+      <h1 className={`${style.test} ${style.color}`}>Welcome to Dashboard.</h1>
+    </>
+    
   )
 }
 
