@@ -67,7 +67,7 @@ export default defineConfig({
             return "react";
           }
           if(/[\\/]react-router-dom[\\/]/i.test(filePath)) {
-            return "vue-router";
+            return "react-router-dom";
           }
           if(/[\\/]zustand[\\/]/i.test(filePath)) {
             return "zustand";
