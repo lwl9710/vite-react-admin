@@ -29,6 +29,7 @@ export default defineConfig({
       }
     }
   },
+  plugins: [react()],
   build: {
     rollupOptions: {
       output: {
@@ -80,5 +81,4 @@ export default defineConfig({
       }
     }
   },
-  plugins: [react()],
 })
