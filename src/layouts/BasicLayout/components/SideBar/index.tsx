@@ -1,57 +1,28 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import style from "./index.module.scss";
-
-import {
-  BarChartOutlined,
-  SettingOutlined,
-  UserOutlined,
-  ApartmentOutlined,
-  TeamOutlined,
-  DashboardOutlined,
-  FireOutlined,
-  UnorderedListOutlined
-} from "@ant-design/icons";
-import type { MenuProps } from "antd";
 import { Menu } from "antd";
-
-type MenuItem = Required<MenuProps>["items"][number];
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[],
-  type?: "group",
-): MenuItem {
-  return { label, key, icon, children, type };
-}
-
-const items: MenuProps["items"] = [
-  getItem("首页", "Dashboard", <DashboardOutlined />),
-  getItem("系统管理", "system", <SettingOutlined />, [
-    getItem("角色列表", "system-role", <UserOutlined />),
-    getItem("权限列表", "system-permission", <ApartmentOutlined />),
-    getItem("用户列表", "system-user", <TeamOutlined />)
-  ]),
-  getItem("活动管里", "activity", <FireOutlined />, [
-    getItem("活动统计", "activity-count", <BarChartOutlined />),
-    getItem("活动列表", "activity-list", <UnorderedListOutlined />),
-  ]),
-]
+import useSystemStore from "@/store/system";
 
 const SideBar: React.FC = () => {
-  const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isCollapsed = useSystemStore(state => state.isCollapsed);
+  const menus = useSystemStore(state => state.menus);
+  const defaultOpenKeys = "/" + location.pathname.split("/")[1];
+  const onClickToPage = ({key: pagePath}: {key: string}) => {
+    navigate(pagePath);
   };
   return (
-    <aside className={style.aside}>
+    <aside className={style.aside} style={{width: `${isCollapsed ? 80 : 220}px`}}>
       <Menu
         theme="dark"
-        onClick={onClick}
-        style={{ width: "100%", height: "100%" }}
-        defaultSelectedKeys={["activity-count"]}
-        defaultOpenKeys={["activity"]}
+        inlineCollapsed={isCollapsed}
+        onClick={onClickToPage}
+        style={{ height: "100%" }}
+        defaultSelectedKeys={[location.pathname]}
+        defaultOpenKeys={[defaultOpenKeys]}
         mode="inline"
-        items={items}
+        items={menus}
       />
     </aside>
   )
