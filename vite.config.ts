@@ -69,7 +69,7 @@ export default defineConfig({
           return "assets/[name].[hash].[ext]";
         },
         manualChunks: (filePath) => {
-          if(/[\\/]antd[\\/]/i.test(filePath)) {
+          if(/[\\/](antd|@ant-design)[\\/]/i.test(filePath)) {
             return "antd";
           }
           if(/[\\/](react|react-dom)[\\/]/i.test(filePath)) {
