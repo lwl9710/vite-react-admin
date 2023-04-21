@@ -78,7 +78,6 @@ function generateMenuMap(menus: MenuItem[], menuMap: MenuMap): MenuMap {
   });
   return menuMap;
 }
-
 // 系统状态
 const useSystemStore = create<State & Actions>(setState => {
   return ({

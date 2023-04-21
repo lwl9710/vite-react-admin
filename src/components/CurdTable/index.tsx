@@ -3,9 +3,15 @@ import { useEffect, useState } from "react";
 import { Table } from "antd";
 import style from "./index.module.scss";
 import usePagination from "./hooks/usePagination";
+import SearchForm from "./components/SearchForm";
 
 import { Space, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import { CurdTableColumn } from "./types";
+
+interface Props {
+  columns?: CurdTableColumn[]
+}
 
 interface DataType {
   name: string;
@@ -65,7 +71,7 @@ const data: DataType[] = new Array(100).fill(null).map((a, index) => (  {
   tags: ['nice', 'developer'],
 }));
 
-const CurdTable: React.FC = () => {
+const CurdTable: React.FC<Props> = (props: Props) => {
   const { pagination } = usePagination();
 
   useEffect(() => {
@@ -74,6 +80,7 @@ const CurdTable: React.FC = () => {
 
   return (
     <div className={style["curd-table"]}>
+      <SearchForm columns={props.columns} />
       <Table dataSource={data} columns={columns} pagination={pagination}></Table>
     </div>
   )
