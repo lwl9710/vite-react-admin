@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Outlet, Navigate, useLocation } from "react-router-dom";
 
 import style from "./index.module.scss";
@@ -18,7 +19,9 @@ const BasicLayout: React.FC = () => {
         <main className={style.main}>
           <Header />
           <section className={style.view}>
-            <Outlet />
+            <Suspense fallback={<p>loading...</p>}>
+              <Outlet />
+            </Suspense>
           </section>
         </main>
       </div>

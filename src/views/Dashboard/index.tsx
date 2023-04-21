@@ -2,6 +2,7 @@ import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Button, Space, Table,message } from "antd";
 import style from "./index.module.scss";
 import BasicCard from "@/components/BasicCard";
+import CurdTable from "@/components/CurdTable";
 import { TABLE_COLUMNS, DATA_SOURCE } from "./options";
 
 const DashboardView: React.FC = () => {
@@ -19,7 +20,7 @@ const DashboardView: React.FC = () => {
           <Button icon={<DeleteOutlined />} type="primary" danger onClick={handleClick}>删除</Button>
         </Space>
       </div>
-      <Table className={style["custom-table"]} size="middle" dataSource={DATA_SOURCE} columns={TABLE_COLUMNS} />
+      <CurdTable />
     </BasicCard>
   )
 }

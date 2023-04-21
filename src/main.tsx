@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 
 import Router from "@/router";
@@ -8,7 +9,9 @@ import "@/assets/styles/initialize.scss";
 
 const rootElement: HTMLElement = document.getElementById("root") as HTMLElement;
 ReactDOM.createRoot(rootElement).render(
-  <ConfigProvider locale={zhCN}>
-    <Router></Router>
-  </ConfigProvider>
+  <Suspense fallback={<p>loading...</p>}>
+    <ConfigProvider locale={zhCN}>
+      <Router></Router>
+    </ConfigProvider>
+  </Suspense>
 );

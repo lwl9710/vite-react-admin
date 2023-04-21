@@ -1,11 +1,6 @@
+import React, { lazy } from "react";
 import { RouteObject } from "react-router-dom";
-import LoginPage from "@/pages/Login";
-import Error404Page from "@/pages/Error/404";
 import BasicLayout from "@/layouts/BasicLayout";
-import DashboardView from "@/views/Dashboard";
-import UserList from "@/views/system/UserList";
-import RoleList from "@/views/system/RoleList";
-import PermissionList from "@/views/system/PermissionList";
 import {
   SettingOutlined,
   UserOutlined,
@@ -14,10 +9,15 @@ import {
   DashboardOutlined
 } from "@ant-design/icons";
 
+function getLazyComponent(component: Promise<any>, attributies: StringObject = {}): React.ReactNode {
+  const LazyComponentWrapper = lazy(() => component);
+  return <LazyComponentWrapper {...attributies}></LazyComponentWrapper>;
+}
+
 const routes: Array<RouteObject> = [
   {
     path: "/login",
-    element: <LoginPage />,
+    element: getLazyComponent(import("@/pages/Login")),
     meta: { title: "登录", hide: true}
   },
   {
@@ -26,7 +26,7 @@ const routes: Array<RouteObject> = [
     children: [
       {
         path: "dashboard",
-        element: <DashboardView />,
+        element: getLazyComponent(import("@/views/Dashboard")),
         meta: { title: "数据大屏", icon: <DashboardOutlined />, fullPath: "/dashboard" }
       },
     ]
@@ -38,24 +38,24 @@ const routes: Array<RouteObject> = [
     children: [
       {
         path: "userList",
-        element: <UserList />,
+        element: getLazyComponent(import("@/views/system/UserList")),
         meta: { title: "用户列表", icon: <TeamOutlined /> }
       },
       {
         path: "roleList",
-        element: <RoleList />,
+        element: getLazyComponent(import("@/views/system/RoleList")),
         meta: { title: "角色列表", icon: <UserOutlined /> }
       },
       {
         path: "permissionList",
-        element: <PermissionList />,
+        element: getLazyComponent(import("@/views/system/PermissionList")),
         meta: { title: "权限列表", icon: <ApartmentOutlined /> }
       },
     ]
   },
   {
     path: "*",
-    element: <Error404Page />,
+    element: getLazyComponent(import("@/pages/Error/404")),
     meta: { title: "访问错误", hide: true }
   }
 ];
