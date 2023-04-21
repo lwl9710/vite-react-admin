@@ -64,7 +64,7 @@ export default defineConfig({
             return "fonts/[name].[hash].[ext]";
           }
           if(/\.css$/i.test(name)) {
-            return "css/[name].[hash].[ext]";
+            return "css/[hash].[ext]";
           }
           return "assets/[name].[hash].[ext]";
         },
