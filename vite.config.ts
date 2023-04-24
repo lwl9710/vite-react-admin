@@ -71,20 +71,20 @@ export default defineConfig(() => {
           },
           manualChunks: (filePath) => {
             if(/[\\/]node_modules[\\/]/i.test(filePath)) {
-              if(/[\\/]node_modules[\\/](antd|@ant-design|@?rc-[^\\/]+?)[\\/]/i.test(filePath)) {
-                return "antd";
-              }
-              if(/[\\/]node_modules[\\/]zustand[\\/]/i.test(filePath)) {
-                return "zustand";
-              }
-              if(/[\\/]node_modules[\\/]react[\\/]/i.test(filePath)) {
+              if(/[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/i.test(filePath)) {
                 return "react";
               }
-              if(/[\\/]node_modules[\\/]react-dom[\\/]/i.test(filePath)) {
-                return "react-dom";
+              if(/[\\/]node_modules[\\/](zustand|use-sync-external-store)[\\/]/i.test(filePath)) {
+                return "zustand";
               }
-              if(/[\\/]node_modules[\\/](react-router|react-router-dom)[\\/]/i.test(filePath)) {
-                return "react-router";
+              if(/[\\/]node_modules[\\/]@babel[\\/]/i.test(filePath)) {
+                return "babel";
+              }
+              if(/[\\/]node_modules[\\/](antd|react-router|react-router-dom|@remix-run)[\\/]/i.test(filePath)) {
+                return "common";
+              }
+              if(/[\\/]node_modules[\\/]@ant-design[\\/]/i.test(filePath)) {
+                return "@ant-design";
               }
               /* 其他依赖处理 */
               return "vendor";
