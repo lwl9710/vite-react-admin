@@ -18,7 +18,7 @@ const routes: Array<RouteObject> = [
   {
     path: "/login",
     element: getLazyComponent(import("@/pages/Login")),
-    meta: { title: "登录", hide: true}
+    meta: { title: "登录", hide: true }
   },
   {
     path: "/",
