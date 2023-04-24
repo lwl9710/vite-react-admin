@@ -45,7 +45,7 @@ function getAvailableRoute(route: RouteObject): RouteObject {
 // routes转菜单
 function generateMenus(routes: RouteObject[], parentPath: string = ""): MenuItem[] {
   routes = routes.map(route => ({
-    path: `${parentPath === "" ? parentPath : getNormalRoutePath(parentPath + "/")}/${getNormalRoutePath(route.path as string)}`,
+    path: `${(parentPath === "" || parentPath === "/") ? parentPath : (parentPath + "/")}${route.path as string}`,
     children: route.children,
     meta: route.meta
   }));
