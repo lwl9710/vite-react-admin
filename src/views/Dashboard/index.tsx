@@ -7,38 +7,31 @@ import { CurdTableColumn } from "@/components/CurdTable/types";
 
 const tableColumns: CurdTableColumn[] = [
   {
-    
-    title: "姓名",
-    dataIndex: "name",
-    search: true
-  },
-  {
-    title: "年龄",
-    dataIndex: "age",
     search: true,
-    formType: "radio"
+    title: "姓名",
+    dataIndex: "name"
   },
   {
     title: "性别",
-    dataIndex: "gender",
-    search: true,
-    formType: "checkbox"
+    dataIndex: "gender"
   },
   {
-    title: "成绩",
-    dataIndex: "score",
-    search: true,
-    formType: "select",
-    dataSources: [
-      { label: "选项-1", value: 1 },
-      { label: "选项-2", value: 2 },
-      { label: "选项-3", value: 3 }
-    ],
-    mode: "multiple"
+    title: "年龄",
+    dataIndex: "age"
   }
 ]
 
 const DashboardView: React.FC = () => {
+  const data = [
+    { key: "0", name: "小明", gender: "男", age: 18 },
+    { key: "1", name: "小红", gender: "女", age: 18 },
+    { key: "2", name: "小美", gender: "女", age: 18 },
+  ]
+  const pagination = {
+    current: 1,
+    pageSize: 10,
+    total: 200
+  }
   const [messageApi, contextHolder] = message.useMessage();
   const handleClick = () => {
     messageApi.success("Antd引入成功...");
@@ -53,7 +46,7 @@ const DashboardView: React.FC = () => {
           <Button icon={<DeleteOutlined />} type="primary" danger onClick={handleClick}>删除</Button>
         </Space>
       </div>
-      <CurdTable columns={tableColumns}/>
+      <CurdTable columns={tableColumns} data={data} pagination={pagination} />
     </BasicCard>
   )
 }

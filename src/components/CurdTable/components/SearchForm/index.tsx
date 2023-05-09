@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { SearchOutlined, SyncOutlined } from "@ant-design/icons";
-import { Row, Col, Form, Input, Button, Space } from "antd";
+import { Form, Button, Space } from "antd";
 
 import style from "./index.module.scss";
-import SearchFormItem from "./SearchFormItem";
+import FormItem from "../FormItem";
 import type { CurdTableColumn } from "../../types";
 
 interface Props {
@@ -17,7 +17,6 @@ const SearchForm: React.FC<Props> = (props: Props) => {
   useEffect(() => {
     if(props.columns !== undefined) {
       const columns = props.columns.filter(column => column.search);
-      console.log("组件开始加载...", columns);
       setSearchColumns(columns);
     }
   }, [props.columns]);
@@ -35,7 +34,7 @@ const SearchForm: React.FC<Props> = (props: Props) => {
     return (
       <div className={style["search-form"]}>
         <Form form={form} layout="inline">
-          {searchColumns.map((column, index) =><SearchFormItem key={index} column={column} />)}
+          {searchColumns.map((column, index) =><FormItem key={index} column={column} />)}
           <Form.Item>
             <Space>
               <Button icon={ <SyncOutlined /> } onClick={clickResetForm}>重置</Button>
